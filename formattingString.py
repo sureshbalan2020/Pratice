@@ -1,7 +1,7 @@
 for i in range(0,12):
     #print(i)
-    print("No. is {3} squared is {2} cube is {3}".format(i, i**2, i**3, i**4))
-
+    print("No. is {0} squared is {1} cube is {2} tetra {3}".format(i, i**2, i**3, i**4))
+exit()
 
     # right alignment
 for i in range(1, 13):
