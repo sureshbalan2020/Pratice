@@ -41,6 +41,31 @@ dfCleanNumberOfPages['number_of_pages']=dfCleanNumberOfPages['number_of_pages'].
 dfCleanNumberOfPages = dfCleanNumberOfPages[dfCleanNumberOfPages['number_of_pages']> 20]
 print('count after cleaning number of pages: '+ str(dfCleanNumberOfPages.number_of_pages.count()))
 
+dfFinal = dfCleanNumberOfPages.copy()
+print(dfFinal.columns)
+dfFinal = dfFinal[dfFinal['title'].str.contains('harry',case=False)]
+dfFinal = dfFinal[dfFinal['title'].str.contains('potter',case=False)]
+dfFinal.to_csv('C:\POC\Output\harrypotter.csv')
 
-print(dfCleanNumberOfPages.number_of_pages.value_counts().to_csv('C:\POC\Pandas Practice datasets\dfCleanNumberOfPages.csv'))
 
+dfFinal = dfCleanNumberOfPages.copy()
+print(dfFinal.columns)
+dfFinal = dfFinal[dfFinal['number_of_pages']==dfFinal['number_of_pages'].max()]
+dfFinal.to_csv('C:\POC\Output\\bookwithmaxpages.csv')
+
+
+dfFinal = dfCleanNumberOfPages.copy()
+print(dfFinal['number_of_pages'].mean())
+dfFinal = dfFinal['number_of_pages'].sum()/dfFinal['number_of_pages'].count()
+f=open('C:\POC\Output\\avenumofpages.csv','a+')
+f.write(str(dfFinal))
+f.close()
+
+
+
+
+dfFinal = dfCleanNumberOfPages.copy()
+print(dfFinal.columns)
+dfFinal = dfFinal[['publish_date','authors']]
+dfFinal=dfFinal.groupby('publish_date')['authors'].nunique()
+dfFinal.to_csv('C:\POC\Output\\author.csv')
